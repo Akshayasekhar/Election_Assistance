@@ -1,0 +1,127 @@
+{% extends 'adminbase.html' %}
+{% block content%}
+<style>
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#officer-table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#officer-table td, #officer-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#officer-table tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+
+#officer-table tr:hover {
+  background-color: #ddd;
+}
+
+#officer-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: grey;
+  color: white;
+}
+
+.add-button {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.add-button button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #495057;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-button button:hover {
+  background-color: #038c5a;
+}
+
+/* Style the links for Edit and Remove */
+#officer-table a {
+  display: inline-block;
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 4px;
+  margin-right: 5px;
+
+}
+
+#officer-table a:hover {
+  background-color: #0056b3;
+}
+#officer-table td .action-buttons {
+  white-space: nowrap; /* Prevent links from wrapping to the next line */
+}
+ h1 {
+            text-align: center;
+            font-size: 36px;
+            color: green;
+            margin-top: 40px;
+        }
+</style>
+
+<div class="container">
+  <h1>Polling Officer Details</h1>
+  <table id="officer-table">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Address</th>
+      <th>Gender</th>
+      <th>Phone</th>
+      <th>Booth Number</th>
+      <th>Email</th>
+      <th>User Name</th>
+      <th>Password</th>
+      <th>Action</th>
+    </tr>
+    {% for officeradd in officer %}
+    <tr>
+      <td>{{ officeradd.fname }}</td>
+      <td>{{ officeradd.sname }}</td>
+      <td>{{ officeradd.address }}</td>
+      <td>{{ officeradd.radio }}</td>
+      <td>{{ officeradd.phone }}</td>
+      <td>{{ officeradd.booth_no }}</td>
+      <td>{{ officeradd.email }}</td>
+      <td>{{ officeradd.username }}</td>
+      <td>{{ officeradd.password }}</td>
+      <td>
+          <div class="action-buttons">
+
+        <a href="{% url 'edit_officer' username=officeradd.username %}">Edit</a>|
+        <a href="{% url 'remove_officer' username=officeradd.username %}">Remove</a>
+          </div>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  <center>
+  <div class="add-button">
+    <a href="addofficer">
+      <button type="submit">Add</button>
+    </a>
+  </div></center>
+</div>
+{% endblock %}

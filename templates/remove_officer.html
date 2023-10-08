@@ -1,0 +1,46 @@
+{% extends 'adminbase.html' %}
+
+{% block content %}
+<div style="margin-top: 50px; text-align: center;">
+  <h1>Remove Polling Officer</h1>
+  <p style="font-size: 18px;">Are you sure you want to remove the Polling Officer "{{ officer.fname }} {{ officer.sname }}"?</p>
+  <br>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" style="padding: 10px 20px; font-size: 16px; background-color: #FF5733; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Confirm</button>
+  </form>
+</div>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+    font-size: 32px;
+    color: #333;
+  }
+
+  p {
+    font-size: 18px;
+    color: #666;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #FF5733;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #FF2B00;
+  }
+</style>
+{% endblock %}

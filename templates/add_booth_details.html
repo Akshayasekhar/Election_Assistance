@@ -1,0 +1,73 @@
+{% extends 'adminbase.html' %}
+{% block title %}
+Add Booth Details
+{% endblock title %}
+
+{% block content %}
+<section class="h-100 bg-light">
+    <div class="container">
+        {% if messages %}
+         {% for message in messages %}
+            {% if message.tags == 'error' %}
+                <div class="alert alert-danger">
+                  {{ message }}
+                </div>
+           {% elif message.tags == 'success' %}
+                <div class="alert alert-success">
+                   {{ message }}
+                </div>
+           {% endif %}
+         {% endfor %}
+    {% endif %}
+  <div class="container py-5 h-100">
+<div class="container">
+    <h1>Add Booth Details</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="booth_no">Booth Number</label>
+                <input type="number" name="booth_no" class="form-control" id="booth_no" placeholder="Booth Number" required>
+                <div class="invalid-feedback">
+                    Please provide a valid booth number.
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="location">Location</label>
+                <input type="text" class="form-control" name="location" id="location" placeholder="Location" required>
+                <div class="invalid-feedback">
+                    Please provide a valid location.
+                </div>
+            </div>
+        </div>
+        <button type="reset" class="btn btn-light">Reset</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+  </div>
+</section>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<style>
+
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .form-control {
+        border-radius: 0;
+    }
+
+    button[type="submit"],
+    button[type="reset"] {
+        margin-top: 10px;
+
+    }
+</style>
+{% endblock content %}

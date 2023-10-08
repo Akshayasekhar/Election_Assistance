@@ -1,0 +1,97 @@
+{% extends 'adminbase.html' %}
+{% load static %}
+{% block content%}
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: grey;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="{% static '/css/image.css' %}">
+
+
+
+<h1 align="center">Registered voter</h1>
+{% for vard_no, people_group in grouped_people %}
+<center>
+    <table id="customers">
+      <tr>
+        <th colspan="4"><h4 align="center">Ward number:{{ vard_no }}</h4></th>
+
+      </tr>
+
+<!-- person_list.html -->
+
+    <tr>
+      <th>Name</th>
+        <th>Image</th>
+      <th>Details</th>
+      <th>Aadhar Number</th>
+
+    </tr>
+              {% for person in people_group %}
+
+      <tr>
+          <td>{{ person.v_name }}</td>
+          <td>
+
+                <div>
+                   <img class="card-img-top" src="{{ person.photo.url }}" alt="{{ person.v_name }}">
+                 </div>
+          </td>
+          <td>
+
+              <p> Gender :{{ person.gender }}</p>
+              <p> Phone Number :{{ person.phone }}</p>
+              <p> Date of birth: {{ person.date }}</p>
+              <p> Email address: {{ person.email }}</p>
+          </td>
+           <td>
+             <p>{{ person.aadhar_id }}</p>
+            </td>
+
+    </tr>
+
+
+
+  {% endfor %}
+        <br>
+
+
+
+
+
+  </table>
+</center>
+{% endfor %}
+<br>
+
+<br>
+<hr>
+<br>
+
+
+{% endblock %}
+
+
+
+

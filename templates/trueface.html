@@ -1,0 +1,16 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>True Face</title>
+</head>
+<body>
+    <h1>True Face</h1>
+    {% if name %}
+        <p>The recognized face is: {{ name }}</p>
+    {% else %}
+        <p>No face recognized.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %}
+Voter Count
+{% endblock title %}
+
+{% block content %}
+<center>
+    <table>
+        <div class="top">
+            <h3>Booth Number: {{ booth_no }}</h3>
+            <h3>Booth Location: {{ booth.location }}</h3>
+        </div>
+        <br>
+        <h4>Total Number of Voters: {{ voter_count }}</h4>
+    </table>
+
+    <h2>Crowd Count Updates</h2>
+    <div class="progress">
+        <div id="progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{ latest_count }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ latest_count }}%"></div>
+    </div>
+    <table class="updates-table">
+        <thead>
+            <tr>
+                <th>Percentage</th>
+                <th>Count</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for update in update %}
+                <tr>
+                    <td>{{ update.count }}%</td>
+                    <td>{{ update.percentage }}</td>
+                    <td>{{ update.timestamp }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3">No updates yet.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</center>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<style>
+    .top {
+        color: pink;
+    }
+
+    .progress {
+        width: 500px;
+        margin-bottom: 20px;
+    }
+
+    #progress-bar {
+        font-weight: bold;
+    }
+
+    .updates-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    .updates-table th,
+    .updates-table td {
+        padding: 8px;
+        text-align: center;
+        border: 1px solid #ddd;
+    }
+
+    .updates-table th {
+        background-color: #f2f2f2;
+    }
+
+    .updates-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .updates-table tr:hover {
+        background-color: #eaf6ff;
+    }
+</style>
+<script>
+    window.onload = function () {
+        var progressBar = document.getElementById('progress-bar');
+        var latestCount = parseInt('{{ latest_count }}');
+        progressBar.style.width = latestCount + '%';
+        progressBar.setAttribute('aria-valuenow', latestCount);
+        progressBar.innerHTML = latestCount + '%';
+    }
+</script>
+{% endblock content %}

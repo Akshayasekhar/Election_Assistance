@@ -1,0 +1,129 @@
+ voter_register/templates/voter_register/register_voter.html
+
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title%}
+signup
+{% endblock title%}
+
+{% block content%}
+
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+<section class="h-100 bg-dark">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card card-registration my-5">
+<h1 class="text-center">voter registration</h1>
+<hr>
+<center>
+    {% if messages %}
+         {% for message in messages %}
+            {% if message.tags == 'error' %}
+                <div class="alert alert-danger">
+                  {{ message }}
+                </div>
+           {% elif message.tags == 'success' %}
+                <div class="alert alert-success">
+                   {{ message }}
+                </div>
+           {% endif %}
+         {% endfor %}
+    {% endif %}
+<div class="right" align="center">
+
+    <form  action="" method="POST" enctype="multipart/form-data">
+
+  {% csrf_token %}
+     <div class="form-row">
+
+
+
+     <div>
+        <label for="validationTooltip01">Name</label>
+        <input type="text" class="form-control" name="v_name"  placeholder="Full Name" required>
+     </div>
+         <br>
+     <div>
+         <label for="validationTooltip01">Aadhar ID</label>
+         <input type="number" class="form-control" name="aadhar_id" placeholder="Aadhar id" required>
+     </div>
+         <br>
+     <div>
+          <label for="validationTooltip01">Date of Birth</label>
+          <input type="date" class="form-control" name="date" placeholder="date" required>
+     </div>
+     <br>
+
+     <div class="custom-control custom-radio custom-control-inline">
+            <label>Gender</label>
+            <input type="radio" name="gender" class="custom-control-input" value="female" required>
+            <label class="custom-control-label">Female</label>
+            <input type="radio"  name="gender" class="custom-control-input" value="male" required>
+            <label class="custom-control-label">Male</label>
+     </div>
+         <br>
+
+         <br>
+         <div>
+            <label for="validationTooltip01">Phone Number</label>
+            <input type="number" class="form-control" name="phone" id="phone" placeholder="Phone Number" required>
+         </div>
+         <br>
+         <div>
+                  <label for="form3Example97">Email ID</label>
+                  <input type="email" id="email" name="email"  placeholder="Email ID" class="form-control form-control-lg" required/>
+         </div>
+         <div>
+                  <label for="form3Example97">Ward number</label>
+                  <input type="text" id="vard" name="vard_no" placeholder="Ward number" class="form-control form-control-lg" required/>
+         </div>
+         <br>
+         <div class="custom-file">
+             <input type="file" class="custom-file-input" name="photo" required>
+             <label class="custom-file-label">upload image</label>
+     </div>
+    </div>
+        <br>
+
+               <center>
+
+                <div class="d-flex center-pt-3">
+                  <button type="reset" class="btn btn-light btn-lg">Reset all</button>
+                  <button type="submit" class="btn btn-warning btn-lg ms-2">Submit form</button>
+                </div>
+               </center>
+    </form>
+
+
+<br>
+    <hr>
+</div>
+</center>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+    .alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+</style>
+{% endblock content%}

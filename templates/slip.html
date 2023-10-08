@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}
+view slip
+{% endblock title%}
+
+{% block content%}
+<link rel="stylesheet" href="{% static '/css/image.css' %}">
+
+
+<!-- select_user.html -->
+<!-- user.html -->
+<center>
+<h1>voter Details</h1>
+    <br>
+    <table border="1" cellpadding="20px">
+        <td>
+            <div>
+                <div>
+
+                    <img  src="{{ vuser.image.url }}" alt="{{ vuser.name }}">
+                </div>
+                <p>Voter Id: {{ vuser.voter_id }}</p>
+
+                <p>Name: {{ vuser.name }}</p>
+                <p>House No: {{ vuser.house_no }}</p>
+                <p>Age: {{ vuser.age }}</p>
+                <p>Gender: {{ vuser.gender }}</p>
+
+            </div>
+        </td>
+    </table>
+</center>
+<!-- Add more fields as needed -->
+<center>
+<div>
+    <h4>
+        Polling Station Number: {{ vuser.booth_no }}<br>
+        Polling Location: {{ booth.location }}
+    </h4>
+</div>
+</center>
+{% endblock content%}

@@ -1,0 +1,92 @@
+{% extends 'officerbase.html' %}
+{% load static %}
+{% block content%}
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: grey;
+  color: white;
+}
+.tick-mark {
+  color: green; /* Change the color to your desired color */
+  font-size: 40px; /* Adjust the font size to your desired value */
+}
+
+</style>
+<link rel="stylesheet" href="{% static '/css/image.css' %}">
+
+{% if request.session.booth_no %}
+
+
+    <h1>Voter Details for Booth Number: {{ booth_no }} (Voter Count: {{ voter_count }})</h1>
+
+<!-- person_list.html -->
+<ul>
+  <table id="customers">
+    <tr>
+      <th>Serial Number</th>
+        <th>Image</th>
+      <th>Details</th>
+      <th>Aadhar Number</th>
+        <th>verified</th>
+    </tr>
+      {% for person in people %}
+      <tr>
+                        <td>{{ forloop.counter }}</td>
+          <td>
+
+                <div align="center">
+                 <img  src="{{ person.image.url }}" alt="{{ person.name }}">
+                </div>
+          </td>
+          <td>
+               <div>
+                   <p align="center">
+
+                   Voter id : {{ person.voter_id }}<br>
+                   Name : {{ person.name }}<br>
+                   House No:{{ person.house_no }}<br>
+                   Age:{{ person.age }}<br>
+                   Gender:{{ person.gender }}<br>
+                   </p>
+               </div>
+
+         </td>
+
+      <td>{{ person.aadhar_id }}</td>
+          <td>
+                  {% if person.verified %}
+              <center><span class="tick-mark">&#10004;</span></center>
+              {% endif %}
+          </td>
+    </tr>
+
+      {% endfor %}
+
+  </table>
+
+</ul>
+
+{% endif %}
+
+
+
+{% endblock %}
+

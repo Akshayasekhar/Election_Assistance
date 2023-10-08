@@ -1,0 +1,124 @@
+{% extends 'adminbase.html' %}
+{% load static %}
+
+{% block title%}
+publish result
+{% endblock title%}
+<link rel="stylesheet" href="{% static '/css/officeradd.css' %}">
+
+{% block content%}
+<center>
+  {% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-success">
+      {{ message }}
+    </div>
+  {% endfor %}
+
+{% endif %}
+
+
+<section class="h-100 bg-dark">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card card-registration my-4">
+          <div class="row g-0">
+              <form  action="" method="POST" enctype="multipart/form-data" onsubmit="return validatePercentage()">
+
+                 {% csrf_token %}
+
+            <div class="col-xl-6">
+              <div class="card-body p-md-5 text-black">
+                <h3 class="mb-5 text-uppercase">Publish Election Result</h3>
+
+
+
+                    <div class="form-outline">
+                      <input type="text" id="form3Example1m" name="constituency" class="form-control form-control-lg" required />
+                      <label class="form-label" for="form3Example1m">constituency</label>
+                    </div>
+
+
+                    <div class="form-outline">
+                      <input type="text" id="form3Example1n" name="c_name" class="form-control form-control-lg" required/>
+                      <label class="form-label" for="form3Example1n">candidate name</label>
+                    </div>
+
+
+
+
+
+                <div class="form-outline mb-4">
+                  <input type="text" id="form3Example8" name="party_name" class="form-control form-control-lg" required />
+                  <label class="form-label" for="form3Example8">Party name</label>
+                </div>
+
+
+
+
+                <div class="form-outline mb-4">
+                  <input type="number" id="form3Example90" name="vote_count" class="form-control form-control-lg" required />
+                  <label class="form-label" for="form3Example90">vote count</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="text" id="percentage" name="percentage" class="form-control form-control-lg" required />
+                  <label class="form-label" for="percentage">Percentage</label>
+                </div>
+                <div class="form-outline mb-4">
+                  <input type="file" id="photo" name="photo" class="form-control form-control-lg" required/>
+                  <label class="form-label" for="form3Example90">  </label>
+                </div>
+
+
+
+
+
+                <div class="d-flex justify-content-end pt-3">
+                  <button type="reset" class="btn btn-light btn-lg">Reset all</button>
+                  <button type="submit" >Submit form</button>
+                </div>
+
+              </div>
+            </div>
+             </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</center>
+<style>
+ button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #495057;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+}
+</style>
+<script>
+  function validatePercentage() {
+    var percentageInput = document.getElementById('percentage').value.trim();
+
+    if (percentageInput === '') {
+      alert('Please enter a percentage.');
+      return false;
+    }
+
+    var percentageValue = parseFloat(percentageInput);
+
+    if (isNaN(percentageValue) || percentageValue < 0 || percentageValue > 100) {
+      alert('Invalid percentage. Please enter a value between 0 and 100.');
+      return false;
+    }
+
+    return true;
+  }
+</script>
+
+{% endblock content%}

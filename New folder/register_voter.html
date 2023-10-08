@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voter Registration</title>
+    <style>
+        /* static/styles.css */
+
+/* Style the form container */
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 90px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Style form labels */
+form label {
+<!--    display: block;-->
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Style form inputs */
+form input[type="text"],
+form input[type="number"],
+form input[type="email"],
+form input[type="tel"],
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style form radio buttons */
+form .custom-control-label {
+    margin-right: 10px;
+}
+
+/* Style form file inputs */
+form .custom-file-label {
+    cursor: pointer;
+}
+
+/* Style form submit button */
+form input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Style error messages */
+form .error-message {
+    color: #ff0000;
+    font-size: 14px;
+    margin-top: 5px;
+}
+ .error-message {
+    color: #ff0000; /* Red color for error messages */
+    font-size: 14px;
+    margin-top: 5px;
+    /* Add any other styling you want */
+}
+
+
+    </style>
+</head>
+<body>
+<center>
+    {%if error_message %}
+    <p class="error-message">{{ error_message }}</p>
+    {% endif %}
+
+</center>
+    <h1 align="center">Voter Enrollment </h1>
+    <form method="post" enctype="multipart/form-data"  onsubmit="return validateForm()">
+        {% csrf_token %}
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required min="18" max="150"><br>
+
+
+        <label for="house_no">House Number:</label>
+        <input type="number" id="house_no" name="house_no" required ><br>
+
+        <label for="aadhar_id">Aadhar Id:</label>
+        <input type="number" id="aadhar_id" name="aadhar_id" required ><br>
+
+        <div class="custom-control custom-radio custom-control-inline">
+            <label>Gender</label>
+            <input type="radio" name="gender" class="custom-control-input" value="female">
+            <label class="custom-control-label">Female</label>
+            <input type="radio"  name="gender" class="custom-control-input" value="male">
+            <label class="custom-control-label">Male</label>
+     </div>
+          <br>
+        <div class="custom-file">
+            <label class="custom-file-label">upload  image</label>&nbsp;
+
+             <input type="file" class="custom-file-input" name="image">
+     </div>
+        <br>
+
+        <div class="custom-file">
+            <label class="custom-file-label">upload Aadhar</label>&nbsp;
+
+             <input type="file" class="custom-file-input" name="aadhar_file">
+     </div>
+        <br>
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" required></textarea><br>
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required><br>
+
+        <label for="state">State:</label>
+        <input type="text" id="state" name="state" required><br>
+
+        <label for="pin">Pin Code:</label>
+        <input type="number" id="pin" name="pin" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required><br>
+
+        <input type="submit" value="Register">
+    </form>
+<!-- Add this script tag inside the <head> or before the closing </body> tag -->
+<script>
+    // Function to validate phone number (10-digit numeric)
+    function validatePhoneNumber(input) {
+        var phoneNumberPattern = /^\d{10}$/;
+        return phoneNumberPattern.test(input);
+    }
+
+    // Function to validate Aadhar ID (12-digit numeric)
+    function validateAadharId(input) {
+        var aadharIdPattern = /^\d{12}$/;
+        return aadharIdPattern.test(input);
+    }
+
+    // Function to validate PIN (6-digit numeric)
+    function validatePIN(input) {
+        var pinPattern = /^\d{6}$/;
+        return pinPattern.test(input);
+    }
+
+    // Function to validate the form on submission
+    function validateForm() {
+        var phoneNumberInput = document.getElementById('phone');
+        var aadharIdInput = document.getElementById('aadhar_id');
+        var pinInput = document.getElementById('pin');
+
+        // Validate phone number
+        if (!validatePhoneNumber(phoneNumberInput.value)) {
+            alert('Please enter a valid phone number (10-digit numeric).');
+            return false;
+        }
+
+        // Validate Aadhar ID
+        if (!validateAadharId(aadharIdInput.value)) {
+            alert('Please enter a valid Aadhar ID (12-digit numeric).');
+            return false;
+        }
+
+        // Validate PIN
+        if (!validatePIN(pinInput.value)) {
+            alert('Please enter a valid PIN (6-digit numeric).');
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
+</body>
+</html>

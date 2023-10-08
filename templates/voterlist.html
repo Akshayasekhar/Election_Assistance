@@ -1,0 +1,131 @@
+{% extends 'adminbase.html' %}
+{% load static %}
+{% block content%}
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: grey;
+  color: white;
+}
+ .remove-button {
+        background-color: grey;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .remove-button:hover {
+        background-color: #c82333;
+    }
+
+    /* Optional: Adjust the button styling for different sizes */
+    .remove-button.large {
+        padding: 15px 30px;
+        font-size: 18px;
+    }
+
+    .remove-button.small {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+     h1 {
+            text-align: center;
+            font-size: 36px;
+            color: green;
+            margin-top: 40px;
+        }
+</style>
+<link rel="stylesheet" href="{% static '/css/image.css' %}">
+
+
+
+<h1 align="center">Voter List</h1>
+{% for group in grouped_people %}
+
+    <table id="customers">
+     <tr>
+      <th colspan="5"><h4 align="center">Booth Number: {{ group.booth_no }} (Voter Count: {{ group.voter_count }})</h4></th>
+    </tr>
+
+<!-- person_list.html -->
+
+    <tr>
+      <th>Serial Number</th>
+        <th>Image</th>
+      <th>Details</th>
+      <th>Aadhar Number</th>
+        <th>Actions</th>
+
+    </tr>
+            {% for person in group.people %}
+
+      <tr>
+                        <td>{{ forloop.counter }}</td>
+          <td>
+
+                <div>
+                 <img  src="{{ person.image.url }}" alt="{{ person.name }}">
+                 </div>
+          </td>
+          <td>
+
+
+               <div>
+                   <p>
+
+                   Voter id : {{ person.voter_id }}<br>
+                   Name : {{ person.name }}<br>
+                   House No:{{ person.house_no }}<br>
+                   Age:{{ person.age }}<br>
+                   Gender:{{ person.gender }}<br>
+                   </p>
+               </div>
+
+         </td>
+
+      <td>{{ person.aadhar_id }}</td>
+          <td>
+<!--            <a href="{% url 'edit_voter' voter_id=person.id %}"><button>Edit</button></a>-->
+              &nbsp;
+            <a href="{% url 'remove_voter' voter_id=person.id %}"><button class="remove-button">Remove</button></a>
+          </td>
+      </tr>
+
+
+  {% endfor %}
+        <br>
+
+
+
+
+
+  </table>
+<br>
+<br>
+<hr>
+<br>
+{% endfor %}
+
+
+{% endblock %}
+

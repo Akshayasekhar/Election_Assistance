@@ -1,0 +1,214 @@
+<!-- voter_register/templates/voter_register/voter_confirmation.html -->
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voter Registration Confirmation</title>
+    <link rel="stylesheet" href="{% static '/css/image.css' %}">
+
+    <style>
+        /* static/css/professional.css */
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 30px;
+    left-margin: 50px;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+h1 {
+    text-align: center;
+    color: #007bff;
+}
+
+p {
+    margin: 20px 0;
+}
+
+strong {
+    font-weight: bold;
+
+}
+
+.confirmation-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.details-column {
+    flex: 1;
+    margin-left: 70px;
+}
+
+.image-container {
+    text-align: center;
+}
+
+.preview-image {
+    max-width: 200px;
+    display: block;
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.file {
+    color: #007bff;
+}
+
+.edit-link {
+    display: block;
+    text-align: center;
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+.edit-link:hover {
+    text-decoration: underline;
+}
+/* Style the success message container */
+.success-message {
+    background-color: #4CAF50; /* Green background color */
+    color: #ffffff; /* White text color */
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+.submit-button {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .submit-button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Style the "Edit Details" link */
+    .edit-link {
+        display: block;
+        text-align: center;
+        color: #007bff;
+        text-decoration: none;
+        margin-top: 20px;
+        font-size: 16px;
+    }
+
+    .edit-link:hover {
+        text-decoration: underline;
+    }
+/* Style the success message text */
+.success-message p {
+    margin: 0;
+    font-size: 16px;
+}
+.back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if success_message %}
+            <div class="success-message">
+                <p>{{ success_message }}</p>
+            </div>
+        {% endif %}
+      <div class="container">
+        {% if voter.confirmation %}
+            <div class="success-message">
+                <p>Registration Successful! Your details have been updated.</p>
+            </div>
+        {% endif %}
+        <h1>Registration Confirmation</h1>
+        <div class="image-container">
+            <img class="preview-image" src="{{ voter.image.url }}" alt="{{ voter.name }}">
+        </div>
+        <div class="confirmation-details">
+            <div class="details-column">
+                <p><strong>Full Name:</strong></p>
+                <p><strong>Age:</strong></p>
+                <p><strong>House Number:</strong></p>
+                <p><strong>Aadhar ID:</strong></p>
+                <p><strong>Gender:</strong></p>
+                <p><strong>Address:</strong></p>
+                <p><strong>City:</strong></p>
+                <p><strong>State:</strong></p>
+               <p><strong>Pincode:</strong></p>
+               <p><strong>Email:</strong></p>
+               <p><strong>Phone:</strong></p>
+                <p><strong>Aadhar file:</strong></p>
+
+            </div>
+            <div class="details-column">
+                <p>{{ voter.name }}</p>
+                <p>{{ voter.age }}</p>
+                <p>{{ voter.house_no }}</p>
+                <p>{{ voter.aadhar_id }}</p>
+                <p>{{ voter.gender }}</p>
+                <p>{{ voter.address }}</p>
+                <p>{{ voter.city }}</p>
+                <p>{{ voter.state }}</p>
+                <p>{{ voter.pin }}</p>
+                 <p>{{ voter.email }}</p>
+                 <p>{{ voter.phone }}</p>
+                            <a class="file" href="{{ voter.aadhar_file.url }}" target="_blank">Download Aadhar File</a>
+
+            </div>
+
+
+        </div>
+
+            <form method="post" action="{% url 'submit_voter_details' voter.id %}">
+            {% csrf_token %}
+                {% if not voter.confirmation %}
+                <button class="submit-button" type="submit">Submit</button>
+
+            <div class="button-container">
+
+                <a class="edit-link" href="{% url 'edited_voter' voter.id %}">Edit Details</a>
+            </div>
+                {% endif %}
+            </form>
+      </div>
+                <a class="back-button" href="{% url 'index' %}">Back to Home</a>
+
+    </div>
+</body>
+</html>

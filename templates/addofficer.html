@@ -1,0 +1,151 @@
+{% extends 'adminbase.html' %}
+{% load static %}
+
+{% block title%}
+add officer
+{% endblock title%}
+<link rel="stylesheet" href="{% static '/css/officeradd.css' %}">
+
+{% block content%}
+<center>
+  <!-- addofficer.html -->
+{% if error_message %}
+  <p class="error">{{ error_message }}</p>
+{% endif %}
+
+  <hr>
+  <h3 class="mb-5 text-uppercase">Polling Officer registration form</h3>
+
+<section class="h-100 bg-dark">
+  <div class="background">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card card-registration my-4">
+          <div class="row g-0">
+
+           <form action="" method="post" onsubmit="return validatePhoneNumber()">
+                 {% csrf_token %}
+
+            <div>
+              <div class="card-body p-md-5 text-black">
+
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input type="text" id="form3Example1m" name="fname" class="form-control form-control-lg" />
+                      <label class="form-label" for="form3Example1m">First name</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input type="text" id="form3Example1n" name="sname" class="form-control form-control-lg" />
+                      <label class="form-label" for="form3Example1n">Last name</label>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="form-outline mb-4">
+                  <textarea id="form3Example8" name="address" class="form-control form-control-lg" required></textarea>
+                  <label class="form-label" for="form3Example8">Address</label>
+                </div>
+
+                <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+
+                  <h6 class="mb-0 me-4">Gender: </h6>
+
+                  <div class="form-check form-check-inline mb-0 me-4">
+                    <input class="" type="radio" name="radio" value="female" />
+                    <label class="form-check-label" for="female">Female</label>
+                  </div>
+
+                  <div class="form-check form-check-inline mb-0 me-4">
+                    <input class="" type="radio" name="radio" value="male" />
+                    <label class="form-check-label" for="male">Male</label>
+                  </div>
+
+                  <div class="form-check form-check-inline mb-0">
+                    <input class="" type="radio" name="radio" value="other" />
+                    <label class="form-check-label" for="other">Other</label>
+                  </div>
+
+                </div>
+
+
+
+
+                <div class="form-outline mb-4">
+                  <input type="tel" id="phone" name="phone"  required class="form-control form-control-lg" />
+                  <label class="form-label" for="form3Example97">Phone</label>
+                </div>
+                <div class="form-outline mb-4">
+                  <input type="number" id="boothno" name="booth_no"  class="form-control form-control-lg"  required/>
+                  <label class="form-label" for="form3Example90">Booth number</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="email" id="email" name="email" class="form-control form-control-lg" required/>
+                  <label class="form-label" for="form3Example97">Email ID</label>
+                </div>
+                <div class="form-outline mb-4">
+                  <input type="text" id="username" name="username" class="form-control form-control-lg" />
+                  <label class="form-label" for="form3Example97">User name</label>
+                </div>
+
+                  <div class="form-outline mb-4">
+                  <input type="password" id="form3Example97"  name="password" class="form-control form-control-lg" />
+                  <label class="form-label" for="form3Example97">Password</label>
+                </div>
+
+                <div class="d-flex justify-content-end pt-3">
+                  <button type="reset" class="btn btn-light btn-lg">Reset all</button>
+                  <button type="submit" class="btn btn-warning btn-lg ms-2">Submit form</button>
+                </div>
+
+              </div>
+            </div>
+             </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+</center>
+
+<style>
+  .background{
+    width: 60%;
+    background: grey;
+    padding-left: 40px;
+    padding-right: 50px;
+
+}
+
+.error{
+  color: #ff0000;
+  font-weight: bold;
+  padding: 10px;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+</style>
+<script>
+    function validatePhoneNumber() {
+        var mobileNo = document.getElementById('phone').value;
+        if (mobileNo.length !== 10 || isNaN(mobileNo)) {
+            alert('Please enter a 10-digit phone number.');
+            return false;
+        }
+        return true;
+    }
+</script>
+
+
+{% endblock content%}

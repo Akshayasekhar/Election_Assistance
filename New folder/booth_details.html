@@ -1,0 +1,76 @@
+{% extends 'adminbase.html' %}
+{% block content%}
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 70%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+    text-align: center;
+
+}
+ h1 {
+            text-align: center;
+            font-size: 36px;
+            color: green;
+            margin-top: 40px;
+        }
+
+#customers tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+  background-color: #ddd;
+}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: grey;
+  color: white;
+}
+
+.container {
+  margin-top: 50px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+button {
+  margin-top: 10px;
+}
+
+</style>
+
+
+<div class="container">
+  <center>
+  <h1>Booth Details</h1>
+  <table id="customers">
+    <tr>
+      <th>Booth Number</th>
+      <th>Booth Location</th>
+    </tr>
+    {% for booth in booths %}
+    <tr>
+      <td>{{ booth.booth_no }}</td>
+      <td>{{ booth.location }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+<br>
+  <a href="add_booth_details" class="btn btn-primary">Add Booth</a>
+  </center>
+</div>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+{% endblock %}

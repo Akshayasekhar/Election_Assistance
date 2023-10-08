@@ -1,0 +1,83 @@
+{% extends 'officerbase.html' %}
+{% block title %}
+face recognition
+{% endblock title %}
+
+{% block content %}
+<style>
+  /* General Styles */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  /* Header Section */
+  .hero_area {
+    height: 100vh;
+    background-image: url(https://npr.brightspotcdn.com/dims4/default/c74df97/2147483647/strip/true/crop/1905x1000+48+0/resize/1200x630!/quality/90/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2Flegacy%2Fsites%2Fkwgs%2Ffiles%2F201601%2FBALLOT-BOX-Photo.jpg);
+    background-size: cover;
+  }
+
+  /* Heading Styles */
+  h1 {
+    text-align: center;
+    color: green;
+    font-size: 30px;
+    margin-top: 20px;
+  }
+
+  /* Subheading Styles */
+  h2 {
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+    font-size: 24px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Paragraph Styles */
+  p {
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  .transparent-card {
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 300px;
+            margin: 0 auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .transparent-card button {
+            display: block;
+            margin: 0 auto;
+            background-color: #3f6e8d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .transparent-card button:hover {
+            background-color: #2980b9;
+        }
+
+</style>
+
+<body class="hero_area">
+  <h1 style="font-size: 30px;">Welcome, {{ fname }} {{ sname }}!</h1>
+  <h2>Verify Voter Through Face Recognition</h2>
+  <br><br>
+<div class="transparent-card">
+    <button onclick="location.href='{% url 'verify_person_view' %}'">Voter Verification</button>
+  <p>"Ensure secure and accurate voting with our advanced voter verification system. Using cutting-edge face recognition technology,
+    we verify voters' identities, eliminating any chance of fraudulent activities."</p>
+</div>
+</body>
+{% endblock content %}

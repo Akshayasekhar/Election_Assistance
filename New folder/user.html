@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title%}
+View Slip Details
+{% endblock title %}
+
+{% block content %}
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+  }
+  .hero_area {
+  height: 100vh;
+  background-image: url(https://t4.ftcdn.net/jpg/05/50/34/75/360_F_550347527_a4E35eFyM3s5KhwaUMoGmqgJQf9Ub48q.jpg);
+  background-size: cover;
+}
+
+  h1 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 2px;
+    color: aliceblue;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  label {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  input[type="number"] {
+    width: 350px;
+    padding: 14px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  button[type="submit"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #3170b3;
+  }
+</style>
+<body class="hero_area">
+<div class="container">
+  <h1>Check Enrollment</h1>
+
+  <form action="{% url 'slip' %}" method="GET">
+    <h3> <label for="aadhar_id"></label></h3>
+    <br>
+    <input type="number" id="aadhar_id" name="aadhar_id" placeholder="Enter Aadhar number" required>
+    <br>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+</body>
+{% endblock content %}

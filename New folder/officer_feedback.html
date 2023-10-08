@@ -1,0 +1,77 @@
+{% extends 'adminbase.html' %}
+{% block title%}
+Officer Feedback
+{% endblock title%}
+{% block content%}
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Feedback from Voters</h1>
+    </header>
+    <div class="container">
+        <ul>
+            {% for feedback in feedbacks %}
+                <li>
+                    <strong>Name:</strong> {{ feedback.name }}<br>
+                    <strong>Email:</strong> {{ feedback.email }}<br>
+                    <strong>Message:</strong> {{ feedback.message }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <footer>
+        &copy; 2023 Your Election Assistance System. All rights reserved.
+    </footer>
+</body>
+{% endblock content%}

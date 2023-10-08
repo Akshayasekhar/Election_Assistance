@@ -1,0 +1,94 @@
+{% extends 'officerbase.html' %}
+{% block content%}
+<style>
+  .container {
+    margin-top: 50px;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  /* Update table styles */
+  #customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  #customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  #customers tr:nth-child(even){
+    background-color: #f2f2f2;
+  }
+
+  #customers tr:hover {
+    background-color: #ddd;
+  }
+
+  #customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+  }
+
+  /* Update button styles */
+  .button-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn:hover {
+    background-color: #038c5a;
+  }
+
+</style>
+
+<div class="container">
+  <h1>Counting Officer Details</h1>
+  <table id="customers" class="table table-striped">
+    {% for countofficer in c_officer %}
+    <tr>
+      <td>
+        <div>
+          <strong>Name:</strong> {{ countofficer.name }}<br>
+          <strong>Address:</strong> {{ countofficer.address }}<br>
+          <strong>Gender:</strong> {{ countofficer.gender }}<br>
+          <strong>Phone:</strong> {{ countofficer.phone }}<br>
+        </div>
+      </td>
+      <td>
+        <div>
+          <strong>Email:</strong> {{ countofficer.email }}<br>
+          <strong>Username:</strong> {{ countofficer.username }}<br>
+          <strong>Password:</strong> {{ countofficer.password }}<br>
+        </div>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  <div class="button-container">
+    <a href="counting_officer" class="btn">Add Counting Officer</a>
+  </div>
+</div>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+{% endblock %}

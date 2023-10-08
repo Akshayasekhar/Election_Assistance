@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>voter identification</title>
+</head>
+<body>
+
+<form method="post">
+  {% csrf_token %}
+    enter voter id:
+    <input type="text" name="voter_id" id="voter_id">
+    <button type="submit">verify</button>
+</form>
+
+</body>
+</html>

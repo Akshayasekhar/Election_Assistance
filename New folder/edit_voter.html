@@ -1,0 +1,69 @@
+{% extends 'adminbase.html' %}
+{% block title%}
+edit
+{% endblock title%}
+
+{% block content%}
+<center>
+<section class="h-100 bg-dark">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card card-registration my-5">
+<h1>Edit voter </h1>
+<!-- add_person.html -->
+<form  action="" method="POST" enctype="multipart/form-data">
+
+  {% csrf_token %}
+     <div class="form-row">
+
+     <div class="col-md-4 mb-3">
+        <label for="validationTooltip01">Voter ID</label>
+        <input type="text" class="form-control" name="voter_id" placeholder="voter id" value="{{ voter.voter_id }}" required>
+     </div>
+
+     <div class="col-md-4 mb-3">
+        <label for="validationTooltip01">Name</label>
+        <input type="text" class="form-control" name="name"  placeholder="Fullname"  value="{{ voter.name }}"required>
+     </div>
+     <div class="col-md-4 mb-3">
+         <label for="validationTooltip01">Aadhar ID</label>
+         <input type="number" class="form-control" name="aadhar_id" placeholder="Aadhar id" value="{{ voter.aadhar_id }}" required>
+     </div>
+     <div class="col-md-4 mb-3">
+          <label for="validationTooltip01">Age</label>
+          <input type="number" class="form-control" name="age" placeholder="Age" value="{{ voter.age }}" required>
+     </div>
+     <div class="col-md-4 mb-3">
+          <label for="validationTooltip01">House Number</label>
+          <input type="text" class="form-control" name="house_no" id="validationTooltip01" placeholder="house no" value="{{ voter.house_no }}" required>
+     </div>
+
+     <div class="custom-control custom-radio custom-control-inline">
+            <label>Gender</label>
+            <input type="radio" name="gender" class="custom-control-input" value="female" required>
+            <label class="custom-control-label">Female</label>
+            <input type="radio"  name="gender" class="custom-control-input" value="male" required>
+            <label class="custom-control-label">Male</label>
+     </div>
+     <div class="custom-file">
+             <input type="file" class="custom-file-input" name="image" value="{{ voter.image }}" required>
+             <label class="custom-file-label">upload image</label>
+     </div>
+         <div class="col-md-4 mb-3">
+          <label for="validationTooltip01">booth Number</label>
+          <input type="number" class="form-control" name="booth_no" id="boothno" placeholder="booth no"  value="{{ voter.booth_no }}" required>
+     </div>
+    </div>
+         <button type="submit">Save</button>
+    </form>
+        </div></div>
+    </div>
+  </div></section>
+</center>
+{% endblock content%}
+
+
+
+
+

@@ -1,0 +1,179 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+result
+</title></head>
+<body>
+<link rel="stylesheet" href="{% static '/css/image.css' %}">
+<style>
+/* Add your custom styles here */
+
+/* Main container styles */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.center {
+  text-align: center;
+}
+ .hero_area {
+  height: 100vh;
+  background-image: url(https://t4.ftcdn.net/jpg/05/50/34/75/360_F_550347527_a4E35eFyM3s5KhwaUMoGmqgJQf9Ub48q.jpg);
+  background-size: cover;
+}
+h1 {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: blue;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 20px 0;
+}
+
+/* Table styles */
+.table-container {
+  width: 90%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.table-container td {
+  padding: 20px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+
+.table-container img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.table-container p {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.table-container p:first-child {
+  font-weight: bold;
+}
+
+/* Search bar styles */
+.search-bar-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.search-form {
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.search-input {
+  padding: 10px;
+  border: none;
+  width: 300px;
+}
+
+.search-button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+/* Not found message styles */
+.not-found-message {
+  color: grey;
+  text-align: center;
+  font-size: 30px;
+  margin-top: 20px;
+}
+.back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+</style>
+<body class="hero_area">
+<div class="container">
+  <div class="center">
+    <h1>Election Result</h1>
+    <hr>
+  </div>
+
+  <!-- Search bar container -->
+  <div class="search-bar-container">
+    <form class="search-form" action="" method="get">
+      <input class="search-input" type="text" name="constituency_search" placeholder="Search Constituency">
+      <button class="search-button" type="submit">Search</button>
+    </form>
+  </div>
+
+  <div class="table-container">
+    {% if results %}
+      {% for Result in results %}
+        <table>
+          <tr>
+            <td>
+              <div>
+                <img src="{{ Result.photo.url }}" alt="{{ Result.c_name }}">
+              </div>
+            </td>
+            <td>
+              <div>
+                <p>Constituency: {{ Result.constituency }}</p>
+                <p>Candidate Name: {{ Result.c_name }}</p>
+                <p>Party Name: {{ Result.party_name }}</p>
+                <p>Vote Count: {{ Result.vote_count }}</p>
+                <p>Percentage: {{ Result.percentage }}</p>
+              </div>
+            </td>
+          </tr>
+        </table>
+      {% endfor %}
+    {% else %}
+      <p class="not-found-message">Result Not Found</p>
+    {% endif %}
+  </div>
+</div><center>
+                <a class="back-button" href="{% url 'index' %}">Back to Home</a>
+
+</center>
+
+
+<!-- select_user.html -->
+<!-- user.html -->
+
+
+
+</body>
+</html>

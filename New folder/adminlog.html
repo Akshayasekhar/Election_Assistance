@@ -1,0 +1,73 @@
+{% load static %}
+{% block title %}
+{% endblock title %}
+
+{% block content %}
+
+<div class="login-container">
+  <form class="login-form" action="commission/adminhome" onsubmit="return validate()">
+    <h1>Login</h1>
+
+    <label for="username"><b>Username</b></label>
+    <input type="text" placeholder="Enter username" id="username" required>
+    <br><br>
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" id="password" required>
+     <br><br>
+    <input type="submit" value="Login" class="btn">
+  </form>
+</div>
+<script type="text/javascript" src="{% static '/js/popup.js' %}"></script>
+
+<style>
+  body {
+  background-image: url(https://t4.ftcdn.net/jpg/05/50/34/75/360_F_550347527_a4E35eFyM3s5KhwaUMoGmqgJQf9Ub48q.jpg);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .login-form {
+    background-color: #fff;
+    padding: 20px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+  }
+
+  .login-form h1 {
+    text-align: center;
+  }
+
+  .login-form label {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .login-form input[type="text"],
+  .login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .login-form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+</style>
+
+{% endblock content %}

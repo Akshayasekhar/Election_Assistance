@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Error
+{% endblock title %}
+
+{% block content %}
+<br>
+<br>
+<div class="error-message">
+  <h1>Error</h1>
+  <br>
+  <p>{{ error_message }}</p>
+  <p>OR</p>
+  <p>Make sure you are enter a valid Aadhar ID</p>
+</div>
+
+<style>
+  .error-message {
+    text-align: center;
+    margin-top: 50px;
+    background-color: #f8d7da;
+    border: 1px solid #dc3545;
+    padding: 20px;
+    border-radius: 5px;
+  }
+
+  .error-message h1 {
+    color: #dc3545;
+  }
+
+  .error-message p {
+    color: #dc3545;
+    font-weight: bold;
+  }
+</style>
+{% endblock content %}
+
+
+
